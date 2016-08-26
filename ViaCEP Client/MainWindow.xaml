@@ -1,23 +1,33 @@
-﻿<Window x:Class="ViaCEP_Client.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ViaCEP_Client"
+        xmlns:Obselete="clr-namespace:Xceed.Wpf.Toolkit.Obselete;assembly=Xceed.Wpf.Toolkit" x:Class="ViaCEP_Client.MainWindow"
         mc:Ignorable="d"
-        Title="ViaCEP Client" Height="350" Width="525">
+        Title="ViaCEP Client" Height="350" Width="525" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        <Label x:Name="label" Content="CEP:&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxCep" HorizontalAlignment="Left" Height="23" Margin="53,14,0,0" VerticalAlignment="Top" Width="101" TextChanged="textBox_TextChanged" ToolTip="Informe o CEP (somente os números)" MaxLength="8"/>
-        <Label x:Name="label1" Content="Formato Retorno:&#xD;&#xA;" HorizontalAlignment="Left" Margin="159,14,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="CEP:&#xA;" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Formato Retorno:&#xA;" HorizontalAlignment="Left" Margin="159,14,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="comboBoxFormatoRetorno" HorizontalAlignment="Left" Margin="262,14,0,0" VerticalAlignment="Top" Width="161">
             <ComboBoxItem Content="json"/>
             <ComboBoxItem Content="xml"/>
-            <ComboBoxItem Content="piped"/>
-            <ComboBoxItem Content="qwerty"/>
         </ComboBox>
-        <Button x:Name="buttonPesquisar" Content="Pesquisar" HorizontalAlignment="Left" Margin="432,15,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="textBoxRetorno" Margin="10,42,10,10" TextWrapping="Wrap" IsReadOnly="True" TextChanged="textBoxRetorno_TextChanged"/>
+        <Button x:Name="buttonPesquisar" Content="Pesquisar" HorizontalAlignment="Left" Margin="432,17,0,0" VerticalAlignment="Top" Width="75" Click="buttonPesquisar_Click"/>
+
+        <Obselete:MaskedTextBox x:Name="maskedTextBoxCep" HorizontalAlignment="Left" Margin="48,15,0,0" Text="MaskedTextBox" VerticalAlignment="Top" Width="111" Height="21" TextChanged="maskedTextBox_TextChanged" Mask="00000-000" MaxLines="1"/>
+        <ListView x:Name="listViewEndereco" Margin="0,45,10,7" HorizontalAlignment="Right" Width="497">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Cep}" Header="Cep" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Logradouro}" Header="Logradouro" Width="300"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Bairro}" Header="Bairro" Width="150"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Cidade}" Header="Cidade" Width="150"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Estado}" Header="Estado" Width="50"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Window>

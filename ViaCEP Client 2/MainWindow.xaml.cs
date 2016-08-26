@@ -25,7 +25,7 @@ namespace ViaCEP_Client
         {
             InitializeComponent();
 
-            maskedTextBoxCep.Focus();
+            textBoxCep.Focus();
 
         }
 
@@ -41,23 +41,20 @@ namespace ViaCEP_Client
 
             string resultado = await conteudo.ReadAsStringAsync();
 
-            if (!string.IsNullOrEmpty(resultado))
-            {
-               
-            }
-            else
-            {
-               
+            if (!string.IsNullOrEmpty(resultado)){
+                textBoxRetorno.Text = resultado;
+            } else {
+                textBoxRetorno.Text = "Erro na solitação... ";
             }
 
         }
 
         private void buttonPesquisar_Click(object sender, RoutedEventArgs e)
         {
-            if(maskedTextBoxCep.Text.Trim().Length < 8)
+            if(textBoxCep.Text.Trim().Length < 8)
             {
                 MessageBox.Show("Verifique o CEP...");
-                maskedTextBoxCep.Focus();
+                textBoxCep.Focus();
                 return;
             }
 
@@ -68,14 +65,9 @@ namespace ViaCEP_Client
                 return;
             }
 
-            GetCep(maskedTextBoxCep.Text, comboBoxFormatoRetorno.Text);
+            GetCep(textBoxCep.Text, comboBoxFormatoRetorno.Text);
 
-            maskedTextBoxCep.Focus();
-
-        }
-
-        private void maskedTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+            textBoxCep.Focus();
 
         }
     }
